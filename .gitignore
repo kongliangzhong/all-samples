@@ -1,0 +1,15 @@
+bin/
+target/
+file/
+logs/
+gen-java/
+.externalToolBuilders/
+.settings/
+.gradle/
+.classpath
+.project
+.springBeans
+dependency-reduced-pom.xml
+*.iml
+nohup.out
+/tmp

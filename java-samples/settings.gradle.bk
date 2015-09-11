@@ -1,0 +1,7 @@
+include 'thrift-sample-java'
+include 'spring/spring-mvc'
+include 'spring/spring-mvc-embbed-jetty'
+include 'spring/spring-boot-mvc'
+include 'spring/spring-boot-jetty'
+include 'proto/simple'
+include 'curator'

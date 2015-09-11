@@ -1,0 +1,24 @@
+syntax = 'proto2';
+
+option java_package = "cn.klzhong.samples.proto.hello";
+
+service HelloService {
+    rpc SayHello(HelloRequest) returns (HelloResponse);
+}
+
+message HelloRequest {
+    required int64 id = 1;
+    required string msg = 2;
+}
+
+message HelloResponse {
+    enum ErrorCode {
+        OK = 0;
+        ERROR = 1;
+        UNKNOWN_ERROR = 2;
+    }
+    
+    required ErrorCode errCode = 1;
+    optional string errMsg = 2;
+    optional string result = 3;        
+}    

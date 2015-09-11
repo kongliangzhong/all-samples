@@ -1,0 +1,36 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+group = "cn.klzhong"
+version = '0.0.1'
+buildDir = 'target'
+
+eclipse {
+  classpath {
+    downloadJavadoc = true
+    //downloadSources=true
+  }
+}
+//eclipse.classpath.downloadJavadoc = true
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+compileJava.options.fork = true
+compileJava.options.forkOptions.executable = '/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin/javac'
+
+mainClassName = "cn.klzhong.spring.scheduling.Main"
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+dependencies {
+  compile "org.springframework:spring-core:4.1.6.RELEASE"
+  compile "org.springframework:spring-context:4.1.6.RELEASE"
+  compile "org.springframework:spring-context-support:4.1.6.RELEASE"
+  compile "org.springframework:spring-tx:4.1.6.RELEASE"
+  compile 'org.quartz-scheduler:quartz:2.2.1'
+}

@@ -1,0 +1,66 @@
+buildscript {
+  ext {
+    springBootVersion = '1.2.5.RELEASE'
+  }
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/release" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://repo.spring.io/snapshot" }
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+
+group = 'cn.klzhong.all-samples'
+version = '0.1'
+buildDir = 'target'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+  mavenLocal()
+  maven { url "http://192.168.88.8:8081/nexus/content/repositories/public" }
+  maven { url 'http://192.168.88.8:8081/nexus/content/repositories/releases' }
+  maven { url 'http://192.168.88.8:8081/nexus/content/repositories/snapshots' }
+  mavenCentral()
+}
+
+jar {
+  baseName = 'spring-boot-web-jsp'
+  version =  '0.1'
+}
+
+run {
+  systemProperties = System.properties
+}
+
+repositories {
+  // NOTE: You should declare only repositories that you need here
+  mavenLocal()
+  mavenCentral()
+  maven { url "http://repo.spring.io/release" }
+  maven { url "http://repo.spring.io/milestone" }
+  maven { url "http://repo.spring.io/snapshot" }
+}
+
+dependencies {
+  compile("org.springframework.boot:spring-boot-starter:$springBootVersion")
+  compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+  compile("org.springframework.boot:spring-boot-starter-tomcat:$springBootVersion")
+  testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.4'
+}

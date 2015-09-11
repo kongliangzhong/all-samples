@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+
+group = 'cn.klzhong.all-samples'
+version = '0.1'
+buildDir = 'target'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+  mavenLocal()
+  maven { url "http://192.168.88.8:8081/nexus/content/repositories/public" }
+  maven { url 'http://192.168.88.8:8081/nexus/content/repositories/releases' }
+  maven { url 'http://192.168.88.8:8081/nexus/content/repositories/snapshots' }
+  mavenCentral()
+}
+
+sourceSets {
+  main {
+    java {
+      srcDirs "${projectDir}/src/main/proto-gen-java"
+    }
+  }
+}
+
+dependencies {
+  compile 'com.google.protobuf:protobuf-java:2.6.1'
+}
