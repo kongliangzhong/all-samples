@@ -13,31 +13,31 @@ public class BasicSendRecvTest {
     private final static String QUEUE_NAME = "hello";
 
     public static void test() throws Exception {
-        new Thread( new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("sending message...");
-                    try {
-                        send();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
+        new Thread(){
+            @Override
+            public void run() {
+                System.out.println("sending message...");
+                try {
+                    send();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            }).start();
+            }
+        }.start();
 
-        Thread.currentThread().sleep(3000);
+        Thread.currentThread().sleep(1000);
 
-        new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("recieving message...");
-                    try {
-                        recieve();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
+        new Thread(){
+            @Override
+            public void run() {
+                System.out.println("recieving message...");
+                try {
+                    recieve();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            }).start();
+            }
+        }.start();
     }
 
     private static void send() throws Exception {
