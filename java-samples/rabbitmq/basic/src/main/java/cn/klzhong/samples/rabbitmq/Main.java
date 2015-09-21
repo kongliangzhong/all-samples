@@ -14,7 +14,7 @@ public class Main {
         //BasicSendRecvTest.test();
         //new PublishSubscribeSample().test();
         //new RoutingSample().test();
-        //new TopicSample().test();
-        new WorkQueuesSample().test();
+        new TopicSample().test();
+        //new WorkQueuesSample().test();
     }
 }

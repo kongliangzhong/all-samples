@@ -65,9 +65,8 @@ public class WorkQueuesSample {
         //Declare a queue
         channel.queueDeclare(TASK_QUEUE_NAME, true/* durable*/, false, false, null);
 
-        String[] messages = new String[]{"message-1", "message-2", "message-3", "message-4"};
-
-        for (String m : messages) {
+        for (int i = 0; i < 4; i ++) {
+            String m = "message-" + i + "-" + System.currentTimeMillis();
             channel.basicPublish( "", TASK_QUEUE_NAME,
                                   MessageProperties.PERSISTENT_TEXT_PLAIN,
                                   m.getBytes());
@@ -104,7 +103,7 @@ public class WorkQueuesSample {
                     System.out.println(" [" + name + "] Received '" + message + "'");
                 }
             };
-        channel.basicConsume(TASK_QUEUE_NAME, false, consumer);
+        channel.basicConsume(TASK_QUEUE_NAME, false/*autoAck*/, consumer);
     }
 
 }

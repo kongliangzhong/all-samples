@@ -78,7 +78,7 @@ public class RoutingSample {
         channel.exchangeDeclare(EXCHANGE_NAME, "direct");
         String queueName = channel.queueDeclare().getQueue();
 
-        String[] severitys = new String[]{"info", "warning", "error"};
+        String[] severitys = new String[]{ "warning", "error"};
 
         for(String severity : severitys){
             channel.queueBind(queueName, EXCHANGE_NAME, severity);
