@@ -1,0 +1,19 @@
+1) use simple left join:
+    select t1.FirstName, t1.LastName, t2.City, t2.State from Person as t1 left join Address as t2 on t1.PersonId = t2.PersonId;
+
+2) because there is no same column name in two tables, so alias name can be ommited:
+    SELECT FirstName, LastName, City, State
+    FROM Person
+    LEFT JOIN Address
+    ON Person.PersonId = Address.PersonId;
+
+3) left join using:
+    SELECT FirstName, LastName, City, State
+    FROM Person
+    LEFT JOIN Address
+    USING(PersonId);
+
+4) natural left join:
+    SELECT FirstName, LastName, City, State
+    FROM Person
+    NATURAL LEFT JOIN Address;

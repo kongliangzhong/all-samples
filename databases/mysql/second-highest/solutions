@@ -1,0 +1,24 @@
+1) select MAX(Salary) from Employee where Salary != (select MAX(Salary) from Employee);
+
+2) using case:
+    select case
+    when count(Salary) > 1 then (select distinct Salary from Employee
+        order by Salary DESC limit 1, 1)   // limit, offset
+    else NULL end
+    from Employee;
+
+3) using union, sort and limit
+    SELECT Salary FROM Employee GROUP BY Salary
+    UNION ALL (SELECT null AS Salary)
+    ORDER BY Salary DESC LIMIT 1 OFFSET 1
+
+4) using count:
+     SELECT MAX(Salary)
+     FROM (SELECT E1.Salary
+     FROM Employee as E1 JOIN Employee as E2
+     ON E1.Salary < E2.Salary
+     GROUP BY E1.Id HAVING COUNT(E2.Id) = 1
+     )  AS SecondHighestSalary
+     ORDER BY Salary DESC LIMIT 1;
+
+    //change COUNT(E2.ID)=N-1 for Nth highest solution.

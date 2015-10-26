@@ -16,7 +16,7 @@ public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws Exception {
-        String connectionString = "192.168.88.98:2181,192.168.88.59:2181";
+        String connectionString = "192.168.88.159:2181";
         ExponentialBackoffRetry retryPolicy = new ExponentialBackoffRetry(1000, 3);
         int connectionTimeoutMs = 60000;
         int sessionTimeoutMs = 15000;
@@ -32,10 +32,10 @@ public class Main {
         log.info("cf: " + client);
         client.start();
 
-        String path = "/curatortest";
-        setData(client, path, "aaaaaaaaaaaaaaa".getBytes());
-        String data = getData(client, path);
-        log.info("data: {}", data);
+        // String path = "/curatortest";
+        // setData(client, path, "aaaaaaaaaaaaaaa".getBytes());
+        // String data = getData(client, path);
+        // log.info("data: {}", data);
 
         // createNode(client, "/x1");
         // createNode(client, "/x1/dd");
@@ -52,25 +52,29 @@ public class Main {
         // }
             //}
 
-        for (int i = 0; i < 5; i ++) {
-            String serverId = UUID.randomUUID().toString();
-            log.info("generate serverId: {}, server: {}", serverId, i);
-            if (isNodeExist(client, path + "/" + i)) {
-                log.info("node: {} exist already.", i);
-                setData(client, path + "/" + i, serverId.getBytes());
-            } else {
-                createNode(client, path + "/" + i, serverId);
-            }
-        }
+        // for (int i = 0; i < 5; i ++) {
+        //     String serverId = UUID.randomUUID().toString();
+        //     log.info("generate serverId: {}, server: {}", serverId, i);
+        //     if (isNodeExist(client, path + "/" + i)) {
+        //         log.info("node: {} exist already.", i);
+        //         setData(client, path + "/" + i, serverId.getBytes());
+        //     } else {
+        //         createNode(client, path + "/" + i, serverId);
+        //     }
+        // }
 
-        List<String> servers = getNodes(client, path);
-        for (String server : servers) {
-            log.info("server: {}", server);
-            String serverPath = path + "/" + server;
-            String id = getData(client, serverPath);
-            log.info("serverId: {}", id);
-        }
+        // List<String> servers = getNodes(client, path);
+        // for (String server : servers) {
+        //     log.info("server: {}", server);
+        //     String serverPath = path + "/" + server;
+        //     String id = getData(client, serverPath);
+        //     log.info("serverId: {}", id);
+        // }
 
+        System.out.println("delete x1");
+        client.delete().guaranteed().deletingChildrenIfNeeded().forPath("/x1");
+        //client.delete().guaranteed().forPath("/x1");
+        System.out.println("delete x1 finished.");
 
         client.close();
     }
