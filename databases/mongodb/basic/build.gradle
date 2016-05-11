@@ -1,0 +1,24 @@
+apply plugin: 'java'
+
+group = 'cn.klzhong.samples'
+version = '0.1.0'
+buildDir = 'target'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+mainClassName = "cn.klzhong.samples.mongodb.Main"
+
+repositories {
+  mavenLocal()
+  maven { url "http://192.168.88.8:8081/nexus/content/repositories/public" }
+  maven { url mavenReleaseUrl }
+  maven { url mavenSnapshotUrl }
+  mavenCentral()
+}
+
+dependencies {
+  compile 'ch.qos.logback:logback-classic:1.1.2'
+  compile 'org.mongodb:mongo-java-driver:2.12.5'
+}
