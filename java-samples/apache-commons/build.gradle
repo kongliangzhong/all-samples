@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+group = 'cn.klzhong.samples'
+version = '0.1'
+buildDir = 'target'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+mainClassName = "cn.klzhong.samples.apache.ClientWithResponseHandler"
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+dependencies {
+  // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+  compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
+}
