@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ZK_HOME=/usr/local/klzhong/tools/zookeeper-3.4.6
+ZK_HOME=/usr/local/klzhong/tools/zookeeper-3.4.8
 cd $ZK_HOME
 
 if [ -f ${ZK_HOME}/conf/zoo.cfg ] ## conf/zoo.cfg as default config file.

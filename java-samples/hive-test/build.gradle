@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+group = 'cn.klzhong.all-samples'
+version = '0.1'
+buildDir = 'target'
+
+mainClassName = 'cn.klzhong.samples.hive.Main'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+dependencies {
+  compile 'ch.qos.logback:logback-classic:1.0.11'
+}
